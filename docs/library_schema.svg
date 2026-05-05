@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 740" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <!-- Crow's foot "many" marker -->
+    <marker id="many" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="14" markerHeight="14" orient="auto">
+      <path d="M 0 6 L 11 1 M 0 6 L 11 6 M 0 6 L 11 11" fill="none" stroke="#444" stroke-width="1.5"/>
+    </marker>
+    <marker id="many-blue" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="14" markerHeight="14" orient="auto">
+      <path d="M 0 6 L 11 1 M 0 6 L 11 6 M 0 6 L 11 11" fill="none" stroke="#6c8ebf" stroke-width="1.5"/>
+    </marker>
+    <marker id="many-green" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="14" markerHeight="14" orient="auto">
+      <path d="M 0 6 L 11 1 M 0 6 L 11 6 M 0 6 L 11 11" fill="none" stroke="#82b366" stroke-width="1.5"/>
+    </marker>
+    <!-- Crow's foot "one" marker -->
+    <marker id="one-blue" viewBox="0 0 12 12" refX="2" refY="6" markerWidth="14" markerHeight="14" orient="auto">
+      <path d="M 4 0 L 4 12 M 8 0 L 8 12" fill="none" stroke="#6c8ebf" stroke-width="1.5"/>
+    </marker>
+    <marker id="one-green" viewBox="0 0 12 12" refX="2" refY="6" markerWidth="14" markerHeight="14" orient="auto">
+      <path d="M 4 0 L 4 12 M 8 0 L 8 12" fill="none" stroke="#82b366" stroke-width="1.5"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="590" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">
+    Library Service – Django Models ER Diagram
+  </text>
+
+  <!-- ============== BOOK TABLE ============== -->
+  <g>
+    <!-- Header -->
+    <rect x="80" y="100" width="280" height="34" fill="#dae8fc" stroke="#6c8ebf" stroke-width="1.5"/>
+    <text x="220" y="123" text-anchor="middle" font-size="15" font-weight="bold" fill="#1a3a6b">Book</text>
+
+    <!-- Rows -->
+    <rect x="80" y="134" width="280" height="180" fill="#ffffff" stroke="#6c8ebf" stroke-width="1.5"/>
+    <line x1="140" y1="134" x2="140" y2="314" stroke="#6c8ebf" stroke-width="1"/>
+
+    <!-- Row 1: PK id -->
+    <line x1="80" y1="164" x2="360" y2="164" stroke="#cfd8e3" stroke-width="0.8"/>
+    <text x="110" y="154" text-anchor="middle" font-size="11" font-weight="bold" font-style="italic" fill="#444">PK</text>
+    <text x="150" y="154" font-size="12" font-style="italic" fill="#222">id : BigAutoField</text>
+
+    <!-- Row 2: title -->
+    <line x1="80" y1="194" x2="360" y2="194" stroke="#cfd8e3" stroke-width="0.8"/>
+    <text x="150" y="184" font-size="12" fill="#222">title : CharField(255)</text>
+
+    <!-- Row 3: author -->
+    <line x1="80" y1="224" x2="360" y2="224" stroke="#cfd8e3" stroke-width="0.8"/>
+    <text x="150" y="214" font-size="12" fill="#222">author : CharField(255)</text>
+
+    <!-- Row 4: cover -->
+    <line x1="80" y1="254" x2="360" y2="254" stroke="#cfd8e3" stroke-width="0.8"/>
+    <text x="150" y="244" font-size="12" fill="#222">cover : Enum [HARD | SOFT]</text>
+
+    <!-- Row 5: inventory -->
+    <line x1="80" y1="284" x2="360" y2="284" stroke="#cfd8e3" stroke-width="0.8"/>
+    <text x="150" y="274" font-size="12" fill="#222">inventory : PositiveIntegerField</text>
+
+    <!-- Row 6: daily_fee -->
+    <text x="150" y="304" font-size="12" fill="#222">daily_fee : DecimalField ($USD)</text>
+  </g>
+
+  <!-- ============== USER TABLE ============== -->
+  <g>
+    <!-- Header -->
+    <rect x="800" y="100" width="280" height="34" fill="#d5e8d4" stroke="#82b366" stroke-width="1.5"/>
+    <text x="940" y="123" text-anchor="middle" font-size="15" font-weight="bold" fill="#1f5e2a">User (Customer)</text>
+
+    <!-- Rows -->
+    <rect x="800" y="134" width="280" height="180" fill="#ffffff" stroke="#82b366" stroke-width="1.5"/>
+    <line x1="860" y1="134" x2="860" y2="314" stroke="#82b366" stroke-width="1"/>
+
+    <!-- Row 1: PK id -->
+    <line x1="800" y1="164" x2="1080" y2="164" stroke="#cfe0ce" stroke-width="0.8"/>
+    <text x="830" y="154" text-anchor="middle" font-size="11" font-weight="bold" font-style="italic" fill="#444">PK</text>
+    <text x="870" y="154" font-size="12" font-style="italic" fill="#222">id : BigAutoField</text>
+
+    <!-- Row 2: email -->
+    <line x1="800" y1="194" x2="1080" y2="194" stroke="#cfe0ce" stroke-width="0.8"/>
+    <text x="830" y="184" text-anchor="middle" font-size="11" font-style="italic" fill="#444">UQ</text>
+    <text x="870" y="184" font-size="12" fill="#222">email : EmailField (unique)</text>
+
+    <!-- Row 3: first_name -->
+    <line x1="800" y1="224" x2="1080" y2="224" stroke="#cfe0ce" stroke-width="0.8"/>
+    <text x="870" y="214" font-size="12" fill="#222">first_name : CharField(150)</text>
+
+    <!-- Row 4: last_name -->
+    <line x1="800" y1="254" x2="1080" y2="254" stroke="#cfe0ce" stroke-width="0.8"/>
+    <text x="870" y="244" font-size="12" fill="#222">last_name : CharField(150)</text>
+
+    <!-- Row 5: password -->
+    <line x1="800" y1="284" x2="1080" y2="284" stroke="#cfe0ce" stroke-width="0.8"/>
+    <text x="870" y="274" font-size="12" fill="#222">password : CharField (hashed)</text>
+
+    <!-- Row 6: is_staff -->
+    <text x="870" y="304" font-size="12" fill="#222">is_staff : BooleanField</text>
+  </g>
+
+  <!-- ============== BORROWING TABLE ============== -->
+  <g>
+    <!-- Header -->
+    <rect x="440" y="440" width="280" height="34" fill="#fff2cc" stroke="#d6b656" stroke-width="1.5"/>
+    <text x="580" y="463" text-anchor="middle" font-size="15" font-weight="bold" fill="#7a5b15">Borrowing</text>
+
+    <!-- Rows -->
+    <rect x="440" y="474" width="280" height="180" fill="#ffffff" stroke="#d6b656" stroke-width="1.5"/>
+    <line x1="500" y1="474" x2="500" y2="654" stroke="#d6b656" stroke-width="1"/>
+
+    <!-- Row 1: PK id -->
+    <line x1="440" y1="504" x2="720" y2="504" stroke="#e6d99c" stroke-width="0.8"/>
+    <text x="470" y="494" text-anchor="middle" font-size="11" font-weight="bold" font-style="italic" fill="#444">PK</text>
+    <text x="510" y="494" font-size="12" font-style="italic" fill="#222">id : BigAutoField</text>
+
+    <!-- Row 2: borrow_date -->
+    <line x1="440" y1="534" x2="720" y2="534" stroke="#e6d99c" stroke-width="0.8"/>
+    <text x="510" y="524" font-size="12" fill="#222">borrow_date : DateField</text>
+
+    <!-- Row 3: expected_return_date -->
+    <line x1="440" y1="564" x2="720" y2="564" stroke="#e6d99c" stroke-width="0.8"/>
+    <text x="510" y="554" font-size="12" fill="#222">expected_return_date : DateField</text>
+
+    <!-- Row 4: actual_return_date -->
+    <line x1="440" y1="594" x2="720" y2="594" stroke="#e6d99c" stroke-width="0.8"/>
+    <text x="510" y="584" font-size="12" fill="#222">actual_return_date : DateField (null)</text>
+
+    <!-- Row 5: book FK -->
+    <line x1="440" y1="624" x2="720" y2="624" stroke="#e6d99c" stroke-width="0.8"/>
+    <text x="470" y="614" text-anchor="middle" font-size="11" font-style="italic" fill="#444">FK</text>
+    <text x="510" y="614" font-size="12" fill="#222">book_id : ForeignKey(Book)</text>
+
+    <!-- Row 6: user FK -->
+    <text x="470" y="644" text-anchor="middle" font-size="11" font-style="italic" fill="#444">FK</text>
+    <text x="510" y="644" font-size="12" fill="#222">user_id : ForeignKey(User)</text>
+  </g>
+
+  <!-- ============== RELATIONSHIPS ============== -->
+  <!-- Book (1) -> Borrowing (N) : connects from Book bottom to Borrowing book_id row -->
+  <path d="M 220 314 L 220 619 L 440 619" fill="none" stroke="#6c8ebf" stroke-width="2"
+        marker-start="url(#one-blue)" marker-end="url(#many-blue)"/>
+  <rect x="240" y="430" width="80" height="36" fill="#ffffff" stroke="#6c8ebf" stroke-width="0.5" rx="3"/>
+  <text x="280" y="445" text-anchor="middle" font-size="11" font-weight="bold" fill="#1a3a6b">1 : N</text>
+  <text x="280" y="459" text-anchor="middle" font-size="11" font-style="italic" fill="#444">has</text>
+
+  <!-- User (1) -> Borrowing (N) : connects from User bottom to Borrowing user_id row -->
+  <path d="M 940 314 L 940 644 L 720 644" fill="none" stroke="#82b366" stroke-width="2"
+        marker-start="url(#one-green)" marker-end="url(#many-green)"/>
+  <rect x="840" y="440" width="80" height="36" fill="#ffffff" stroke="#82b366" stroke-width="0.5" rx="3"/>
+  <text x="880" y="455" text-anchor="middle" font-size="11" font-weight="bold" fill="#1f5e2a">1 : N</text>
+  <text x="880" y="469" text-anchor="middle" font-size="11" font-style="italic" fill="#444">makes</text>
+
+  <!-- ============== LEGEND ============== -->
+  <g>
+    <rect x="80" y="440" width="280" height="220" fill="#f5f5f5" stroke="#666666" stroke-width="1" rx="3"/>
+    <text x="220" y="465" text-anchor="middle" font-size="13" font-weight="bold" fill="#222">Legend</text>
+    <line x1="100" y1="475" x2="340" y2="475" stroke="#cccccc" stroke-width="1"/>
+
+    <text x="100" y="500" font-size="11" font-weight="bold" font-style="italic" fill="#222">PK</text>
+    <text x="135" y="500" font-size="11" fill="#222">– Primary Key</text>
+
+    <text x="100" y="525" font-size="11" font-style="italic" fill="#222">FK</text>
+    <text x="135" y="525" font-size="11" fill="#222">– Foreign Key</text>
+
+    <text x="100" y="550" font-size="11" font-style="italic" fill="#222">UQ</text>
+    <text x="135" y="550" font-size="11" fill="#222">– Unique constraint</text>
+
+    <text x="100" y="575" font-size="11" font-weight="bold" fill="#222">1 : N</text>
+    <text x="135" y="575" font-size="11" fill="#222">– One-to-Many relationship</text>
+
+    <text x="100" y="610" font-size="10" font-style="italic" fill="#555">Note: User extends Django's AbstractUser.</text>
+    <text x="100" y="625" font-size="10" font-style="italic" fill="#555">Borrowing has FK relationships to both Book</text>
+    <text x="100" y="640" font-size="10" font-style="italic" fill="#555">and User to track who borrowed what.</text>
+  </g>
+</svg>
