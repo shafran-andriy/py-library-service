@@ -40,7 +40,6 @@ urlpatterns = [
         name="redoc",
     ),
     path("api/register/", CreateUserView.as_view(), name="register"),
-    path("api/refister/", CreateUserView.as_view(), name="refister"),
     path("api/login/", TokenObtainPairView.as_view(), name="login"),
     path("api/login/refresh/", TokenRefreshView.as_view(), name="login_refresh"),
     path("api/books/", include("library.urls", namespace="library")),
