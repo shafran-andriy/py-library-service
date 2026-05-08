@@ -1,11 +1,4 @@
 from django.db import models
-
-from django.db import models
-from django.core.validators import MinValueValidator
-from decimal import Decimal
-
-
-from django.db import models
 from django.core.validators import MinValueValidator
 from decimal import Decimal
 
@@ -38,17 +31,3 @@ class Book(models.Model):
 
     def __str__(self):
         return f"{self.title} by {self.author}"
-
-
-class Borrowing(models.Model):
-    borrow_date = models.DateField()
-    expected_return = models.DateField()
-    actual_return = models.DateField()
-    book_id = models.IntegerField()
-    user_id = models.IntegerField()
-
-    class Meta:
-        ordering = ["borrow_date"]
-
-    def __str__(self):
-        return f"{self.borrow_date} by {self.user_id}"
