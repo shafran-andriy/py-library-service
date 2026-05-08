@@ -2,7 +2,7 @@ services:
   db:
     image: postgres:16-alpine
     volumes:
-      - ./data/db:/var/lib/postgresql/data/
+      - postgres_data:/var/lib/postgresql/data
     env_file:
       - .env
 
@@ -24,7 +24,7 @@ services:
       - db
 
   redis:
-    image: "redis:alpine"
+    image: redis:7-alpine
 
   celery:
     build: .
@@ -55,3 +55,6 @@ services:
       - .env
     environment:
       USE_POSTGRES: "True"
+
+volumes:
+  postgres_data:
