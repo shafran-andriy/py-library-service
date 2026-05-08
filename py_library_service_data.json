@@ -1,0 +1,112 @@
+[
+  {
+    "model": "library.book",
+    "pk": 1,
+    "fields": {
+      "title": "Python Crash Course",
+      "author": "Eric Matthes",
+      "cover": "SOFT",
+      "inventory": 8,
+      "daily_fee": "1.20"
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 2,
+    "fields": {
+      "title": "Fluent Python",
+      "author": "Luciano Ramalho",
+      "cover": "HARD",
+      "inventory": 4,
+      "daily_fee": "2.50"
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 3,
+    "fields": {
+      "title": "Automate the Boring Stuff with Python",
+      "author": "Al Sweigart",
+      "cover": "SOFT",
+      "inventory": 12,
+      "daily_fee": "0.95"
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 4,
+    "fields": {
+      "title": "Effective Python",
+      "author": "Brett Slatkin",
+      "cover": "HARD",
+      "inventory": 5,
+      "daily_fee": "1.80"
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 5,
+    "fields": {
+      "title": "Django for APIs",
+      "author": "William S. Vincent",
+      "cover": "SOFT",
+      "inventory": 7,
+      "daily_fee": "1.35"
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 6,
+    "fields": {
+      "title": "Two Scoops of Django",
+      "author": "Daniel Roy Greenfeld and Audrey Roy Greenfeld",
+      "cover": "HARD",
+      "inventory": 3,
+      "daily_fee": "2.10"
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 7,
+    "fields": {
+      "title": "Python Testing with pytest",
+      "author": "Brian Okken",
+      "cover": "SOFT",
+      "inventory": 6,
+      "daily_fee": "1.45"
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 8,
+    "fields": {
+      "title": "Architecture Patterns with Python",
+      "author": "Harry Percival and Bob Gregory",
+      "cover": "HARD",
+      "inventory": 2,
+      "daily_fee": "2.75"
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 9,
+    "fields": {
+      "title": "Learning Python",
+      "author": "Mark Lutz",
+      "cover": "SOFT",
+      "inventory": 9,
+      "daily_fee": "1.65"
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 10,
+    "fields": {
+      "title": "Python Cookbook",
+      "author": "David Beazley and Brian K. Jones",
+      "cover": "HARD",
+      "inventory": 4,
+      "daily_fee": "2.25"
+    }
+  }
+]
