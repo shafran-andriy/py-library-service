@@ -17,6 +17,7 @@ class BorrowingViewSet(
     GenericViewSet,
 ):
     permission_classes = (IsAuthenticated,)
+    lookup_value_regex = "[0-9]+"
 
     def get_queryset(self):
         queryset = Borrowing.objects.select_related("book", "user")
