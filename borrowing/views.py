@@ -1,4 +1,5 @@
 from django.db import transaction
+from django.db.models import F
 from django.utils import timezone
 from rest_framework import mixins, status
 from rest_framework.decorators import action
@@ -8,6 +9,7 @@ from rest_framework.viewsets import GenericViewSet
 
 from borrowing.models import Borrowing
 from borrowing.serializers import BorrowingCreateSerializer, BorrowingSerializer
+from library.models import Book
 
 
 class BorrowingViewSet(
@@ -47,21 +49,20 @@ class BorrowingViewSet(
 
     @action(detail=True, methods=["post"], url_path="return")
     def return_borrowing(self, request, pk=None):
-        borrowing = self.get_object()
-
-        if borrowing.actual_return_date is not None:
-            return Response(
-                {"detail": "This borrowing has already been returned."},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-
         with transaction.atomic():
+            borrowing = self.get_queryset().select_for_update().get(pk=pk)
+
+            if borrowing.actual_return_date is not None:
+                return Response(
+                    {"detail": "This borrowing has already been returned."},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+
             borrowing.actual_return_date = timezone.localdate()
             borrowing.save(update_fields=["actual_return_date"])
 
-            book = borrowing.book
-            book.inventory += 1
-            book.save(update_fields=["inventory"])
+            Book.objects.filter(pk=borrowing.book_id).update(inventory=F("inventory") + 1)
+            borrowing.book.refresh_from_db(fields=["inventory"])
 
         serializer = self.get_serializer(borrowing)
         return Response(serializer.data, status=status.HTTP_200_OK)
