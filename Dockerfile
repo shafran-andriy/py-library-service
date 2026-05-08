@@ -1,10 +1,10 @@
-FROM python:3.11.6-alpine3.18
+FROM python:3.13-slim
 LABEL maintainer="shafran.andriy@gmail.com"
 
 ENV PYTHONUNBUFFERED=1
 WORKDIR /app
-COPY requirements.txt requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt .
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 COPY . .
 RUN mkdir -p /files/media
 
