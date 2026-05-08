@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     "drf_spectacular",
     "rest_framework",
     "library",
-    "user"
+    "user",
+    "borrowing",
 ]
 
 MIDDLEWARE = [
@@ -137,8 +138,8 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": "Theater Service API",
-    "DESCRIPTION": "Order theater tickets",
+    "TITLE": "Library Service API",
+    "DESCRIPTION": "Manage books, users, and borrowings",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
     "SWAGGER_UI_SETTINGS": {
@@ -153,5 +154,6 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ROTATE_REFRESH_TOKENS": False,
+    "AUTH_HEADER_NAME": "HTTP_AUTHORIZE",
 }
 
