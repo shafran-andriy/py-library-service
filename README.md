@@ -6,11 +6,11 @@
 
 ## Project Description
 
-In this city library, users can borrow books and pay upon return depending on the number of days taken. 
-
-The old system was completely manual (paper-based), with no real-time inventory tracking, no digital user management, and cash-only payments. Administrators had no clear visibility into who returned books on time and who didn’t.
-
-This project implements a **web-based library management system** that solves all these issues. The system provides efficient management of books, users, and borrowings through a clean and well-documented REST API.
+This project is a backend system designed to modernize a city library’s outdated paper-based workflow.
+It digitizes book inventory, user accounts, and borrowings, providing real-time tracking and structured data management. 
+The system automatically updates book availability and helps administrators monitor overdue borrowings.
+It offers a browsable API interface that allows full interaction without a dedicated front-end.
+The service improves operational efficiency for library staff and creates a more convenient borrowing experience for users.
 
 ---
 
