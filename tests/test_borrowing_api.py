@@ -1,5 +1,6 @@
 from django.test import TestCase
-from rest_framework.test import APIRequestFactory, force_authenticate
+from rest_framework.test import APIRequestFactory
+from rest_framework.request import Request as DRFRequest
 from django.utils import timezone
 from datetime import timedelta
 from borrowing.models import Borrowing
@@ -19,9 +20,10 @@ class BorrowingTests(TestCase):
         book = Book.objects.create(title="B1", author="A1", inventory=2, daily_fee=1.00)
         expected_return = timezone.localdate() + timedelta(days=2)
         data = {"book": book.pk, "expected_return_date": expected_return}
-        request = self.factory.post("/borrowings/", data, format='json')
-        force_authenticate(request, user=self.user)
-        serializer = BorrowingCreateSerializer(data=data, context={"request": request})
+        raw = self.factory.post("/borrowings/", data, format='json')
+        drf_req = DRFRequest(raw)
+        drf_req.user = self.user
+        serializer = BorrowingCreateSerializer(data=data, context={"request": drf_req})
         self.assertTrue(serializer.is_valid(), serializer.errors)
         borrowing = serializer.save()
         book.refresh_from_db()
@@ -32,9 +34,10 @@ class BorrowingTests(TestCase):
         book = Book.objects.create(title="B2", author="A2", inventory=0, daily_fee=1.00)
         expected_return = timezone.localdate() + timedelta(days=2)
         data = {"book": book.pk, "expected_return_date": expected_return}
-        request = self.factory.post("/borrowings/", data, format='json')
-        force_authenticate(request, user=self.user)
-        serializer = BorrowingCreateSerializer(data=data, context={"request": request})
+        raw = self.factory.post("/borrowings/", data, format='json')
+        drf_req = DRFRequest(raw)
+        drf_req.user = self.user
+        serializer = BorrowingCreateSerializer(data=data, context={"request": drf_req})
         self.assertFalse(serializer.is_valid())
         self.assertIn('book', serializer.errors)
 
@@ -46,13 +49,13 @@ class BorrowingTests(TestCase):
             book=book,
             user=self.user,
         )
-        request = self.factory.post(f"/borrowings/{borrowing.pk}/return/")
-        force_authenticate(request, user=self.user)
+        raw = self.factory.post(f"/borrowings/{borrowing.pk}/return/")
+        drf_req = DRFRequest(raw)
+        drf_req.user = self.user
         view = BorrowingViewSet()
-        view.request = request
+        view.request = drf_req
         view.kwargs = {"pk": str(borrowing.pk)}
-        # call the action method directly
-        response = view.return_borrowing(request, pk=borrowing.pk)
+        response = view.return_borrowing(drf_req, pk=borrowing.pk)
         book.refresh_from_db()
         borrowing.refresh_from_db()
         self.assertEqual(book.inventory, 2)

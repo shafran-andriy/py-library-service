@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.core.exceptions import ValidationError
-from rest_framework.test import APIRequestFactory, force_authenticate
+from rest_framework.test import APIRequestFactory
+from rest_framework.request import Request as DRFRequest
 from django.contrib.auth import get_user_model
 from library.models import Book
 from library.serializers import BookSerializer
@@ -25,7 +26,7 @@ class BookTests(TestCase):
         book = Book(
             title="Bad",
             author="Bad Author",
-            inventory= -1,
+            inventory=-1,
             daily_fee=Decimal("1.00"),
         )
         with self.assertRaises(ValidationError):
@@ -44,8 +45,9 @@ class BookTests(TestCase):
             "inventory": 5,
             "daily_fee": "2.50",
         }
-        request = factory.post("/books/", data, format="json")
-        force_authenticate(request, user=staff)
+        raw = factory.post("/books/", data, format="json")
+        request = DRFRequest(raw)
+        request.user = staff
 
         view = BookViewSet()
         view.request = request
@@ -70,8 +72,9 @@ class BookTests(TestCase):
             "inventory": 10,
             "daily_fee": "3.00",
         }
-        request = factory.put(f"/books/{book.pk}/", data, format="json")
-        force_authenticate(request, user=staff)
+        raw = factory.put(f"/books/{book.pk}/", data, format="json")
+        request = DRFRequest(raw)
+        request.user = staff
 
         view = BookViewSet()
         view.request = request
@@ -92,8 +95,9 @@ class BookTests(TestCase):
         book = Book.objects.create(title="Partial", author="P", inventory=4, daily_fee=Decimal("1.25"))
         factory = APIRequestFactory()
         data = {"inventory": 1}
-        request = factory.patch(f"/books/{book.pk}/", data, format="json")
-        force_authenticate(request, user=staff)
+        raw = factory.patch(f"/books/{book.pk}/", data, format="json")
+        request = DRFRequest(raw)
+        request.user = staff
 
         view = BookViewSet()
         view.request = request
@@ -112,8 +116,9 @@ class BookTests(TestCase):
 
         book = Book.objects.create(title="ToDelete", author="D", inventory=1, daily_fee=Decimal("0.99"))
         factory = APIRequestFactory()
-        request = factory.delete(f"/books/{book.pk}/")
-        force_authenticate(request, user=staff)
+        raw = factory.delete(f"/books/{book.pk}/")
+        request = DRFRequest(raw)
+        request.user = staff
 
         view = BookViewSet()
         view.request = request
