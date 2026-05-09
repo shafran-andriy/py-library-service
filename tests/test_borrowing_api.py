@@ -55,6 +55,9 @@ class BorrowingTests(TestCase):
         view = BorrowingViewSet()
         view.request = drf_req
         view.kwargs = {"pk": str(borrowing.pk)}
+        view.args = ()
+        view.format_kwarg = None
+        view.action = 'return'
         response = view.return_borrowing(drf_req, pk=borrowing.pk)
         book.refresh_from_db()
         borrowing.refresh_from_db()
