@@ -65,7 +65,7 @@ The service improves operational efficiency for library staff and creates a more
    ```
 3. Start the project:
     ```bash
-    docker-compose up --build
+    docker compose up --build
     ```
 4. Create an admin user:
     ```bash
