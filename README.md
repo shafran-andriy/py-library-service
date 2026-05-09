@@ -69,9 +69,13 @@ The service improves operational efficiency for library staff and creates a more
     ```
 4. Create an admin user:
     ```bash
-    docker-compose exec library python manage.py createsuperuser
+    docker compose exec library python manage.py createsuperuser
     ```
 5. If necessary, you can import a JSON file containing test data and use it to test the service:
     ```bash
     docker compose exec library python manage.py loaddata py_library_service_data.json
     ```
+6. If you need to run tests:
+   ```bash
+   docker compose exec library python manage.py test tests
+   ```
